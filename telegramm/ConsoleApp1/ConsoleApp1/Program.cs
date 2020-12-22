@@ -18,7 +18,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             
-            botClient = new TelegramBotClient("1419427834:AAH45aX3gJECl3cUG4w917GCFk4dUKRhGFo") {Timeout = TimeSpan.FromSeconds(10)};
+            botClient = new TelegramBotClient("1427424922:AAH2WPJOXtAi1briYBFisFKju1R2JE1rev8") {Timeout = TimeSpan.FromSeconds(10)};
 
             var bot = botClient.GetMeAsync().Result;
             Console.WriteLine($"Bot:{bot.Id}");
@@ -33,6 +33,12 @@ namespace ConsoleApp1
             var text = e?.Message?.Text;
             if (text == null)
                 return;
+
+            await botClient.SendTextMessageAsync(
+                    chatId: e.Message.Chat,
+                    text: $"Введите слово Погода"
+                    ).ConfigureAwait(false);
+
             Console.WriteLine($"text message '{text}'");
             if (text == "Погода" || text == "погода")
             {
